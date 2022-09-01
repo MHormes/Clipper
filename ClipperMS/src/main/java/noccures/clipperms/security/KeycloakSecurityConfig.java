@@ -43,6 +43,7 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
         corsConfig.setAllowedMethods(List.of("GET", "POST", "DELETE", "PUT"));
         http
                 .authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/clipper/secret").permitAll()
                 .antMatchers(HttpMethod.POST, "/clipper/**", "/series/**", "/api/**").hasRole("USER")
                 .antMatchers(HttpMethod.GET, "/clipper/**", "/series/**").hasRole("USER")
                 .anyRequest().permitAll();

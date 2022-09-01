@@ -1,5 +1,6 @@
 package noccures.clipperms.controller;
 
+import noccures.clipperms.Configuration;
 import noccures.clipperms.dto.ClipperConverter;
 import noccures.clipperms.dto.ClipperDTO;
 import noccures.clipperms.exceptions.DatabaseFailedOperationException;
@@ -22,8 +23,16 @@ public class ClipperController {
     private final ClipperConverter clipperConverter = new ClipperConverter();
 
     @Autowired
+    Configuration configuration;
+
+    @Autowired
     public ClipperController(ClipperService clipperService) {
         this.clipperService = clipperService;
+    }
+
+    @GetMapping("/secret")
+    public ResponseEntity<String> getMyName(){
+        return ResponseEntity.ok().body(configuration.getName());
     }
 
     @PostMapping("/add")

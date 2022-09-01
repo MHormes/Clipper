@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ConfigServer/ConfigServer.iml" filepath="$PROJECT_DIR$/ConfigServer/ConfigServer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/clipperMS/clipperMS.iml" filepath="$PROJECT_DIR$/clipperMS/clipperMS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClipperMS/clipperMS.iml" filepath="$PROJECT_DIR$/ClipperMS/clipperMS.iml" />
     </modules>
   </component>
 </project>
