@@ -5,6 +5,7 @@ import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticatio
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,11 +15,15 @@ import org.springframework.security.web.authentication.session.RegisterSessionAu
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 import org.springframework.web.cors.CorsConfiguration;
 
+import java.util.Collections;
 import java.util.List;
 
 //Commenting the KeycloakConfiguration annotation will let the security config take over. Same works other way around
 @KeycloakConfiguration
 public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
+
+    @Autowired
+    Environment env;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) {
@@ -40,11 +45,11 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
 
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowedOrigins(List.of("*"));
-        corsConfig.setAllowedMethods(List.of("GET", "POST", "DELETE", "PUT"));
+        corsConfig.setAllowedMethods(Collections.singletonList(env.getProperty("clipper.allowed")));
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/clipper/secret").permitAll()
-                .antMatchers(HttpMethod.POST, "/clipper/**", "/series/**", "/api/**").hasRole("USER")
+                .antMatchers("/clipper/**", "/series/**", "/api/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/clipper/**", "/series/**").hasRole("USER")
                 .anyRequest().permitAll();
         http.csrf().disable();

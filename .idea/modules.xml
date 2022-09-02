@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ConfigServer/ConfigServer.iml" filepath="$PROJECT_DIR$/ConfigServer/ConfigServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/ClipperMS/clipperMS.iml" filepath="$PROJECT_DIR$/ClipperMS/clipperMS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClipperMS2/clipperMS2.iml" filepath="$PROJECT_DIR$/ClipperMS2/clipperMS2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
     </modules>
   </component>
 </project>
