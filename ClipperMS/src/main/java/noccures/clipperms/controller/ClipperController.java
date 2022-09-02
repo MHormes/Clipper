@@ -1,6 +1,6 @@
 package noccures.clipperms.controller;
 
-import noccures.clipperms.Configuration;
+import noccures.clipperms.GeneralConfigurationProperties;
 import noccures.clipperms.dto.ClipperConverter;
 import noccures.clipperms.dto.ClipperDTO;
 import noccures.clipperms.exceptions.DatabaseFailedOperationException;
@@ -8,6 +8,7 @@ import noccures.clipperms.exceptions.IncorrectInputException;
 import noccures.clipperms.model.Clipper;
 import noccures.clipperms.service.ClipperService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,11 @@ public class ClipperController {
     private final ClipperConverter clipperConverter = new ClipperConverter();
 
     @Autowired
-    Configuration configuration;
+    GeneralConfigurationProperties configuration;
+
+    @Autowired
+    private Environment env;
+
 
     @Autowired
     public ClipperController(ClipperService clipperService) {
@@ -31,8 +36,8 @@ public class ClipperController {
     }
 
     @GetMapping("/secret")
-    public ResponseEntity<String> getMyName(){
-        return ResponseEntity.ok().body(configuration.getName());
+    public ResponseEntity getMyName(){
+        return ResponseEntity.ok().body(env.getProperty("clipper.name"));
     }
 
     @PostMapping("/add")
