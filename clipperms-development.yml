@@ -1,0 +1,7 @@
+clipper:
+  name: maarten
+  age: 22
+  school: fontys
+  allowed: List.of("GET", "POST", "DELETE", "PUT")
+demo:
+  school: avans
